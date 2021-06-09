@@ -1,0 +1,19 @@
+table {
+    margin-top: 80px;
+    width: 70%;
+    border-spacing: 0 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+th {
+    padding: 10px 20px;
+    background: #696969;
+    color: #A9A9A9;
+    border-right: 2px solid;
+    font-size: 0.9em;
+}
+
+
+
+
