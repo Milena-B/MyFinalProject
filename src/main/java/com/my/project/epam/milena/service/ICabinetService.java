@@ -6,7 +6,7 @@ import com.my.project.epam.milena.domain.UserOrder;
 import java.util.List;
 
 public interface ICabinetService {
-    List<UserOrder> getAllUserOrders(User user,int start,int recordsPerPage);
+    List<UserOrder> getAllUserOrders(User user,int offset,int limit);
 
     int getNumberOfRecords(User user);
 }

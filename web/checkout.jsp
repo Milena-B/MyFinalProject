@@ -87,7 +87,7 @@
                                 <div class="billing-address">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label><fmt:message key="address"/></label>
+                                            <label><fmt:message key="cabinet.order.address"/></label>
                                             <div style="color: #D53E36;">${errors.address}</div>
                                             <input name="address" value="${order.address}" class="form-control" placeholder="<fmt:message key="placeholder.address"/>" type="text">
                                         </div>

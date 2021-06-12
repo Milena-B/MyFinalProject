@@ -11,6 +11,9 @@ import com.my.project.epam.milena.util.QueryBuilder;
 import java.util.List;
 import java.util.Objects;
 
+import static com.my.project.epam.milena.util.Constants.ProductConstants.COUNT_OF_PRODUCTS;
+import static com.my.project.epam.milena.util.Constants.ProductConstants.LIST_WITH_PRODUCTS;
+
 public class ProductService implements IProductService {
 
     private final IProductDao productDao;
@@ -48,28 +51,34 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getAllProducts(FilterModel filterModel) {
-        String query = new QueryBuilder().build(filterModel);
-        return transactionManager.doGetTransactionOperation(()-> productDao.getAll(query));
-    }
-
-
-    @Override
-    public Product getProductById(final Integer id) {
-        return transactionManager.doGetTransactionOperation(() -> productDao.getProductById(id));
+    public List<Product> getAllProductsWithFilter(FilterModel filterModel, int offset, int limit) {
+        String query = new QueryBuilder().build(filterModel,LIST_WITH_PRODUCTS);
+        return transactionManager.doGetTransactionOperation(() -> productDao.getAllProductsWithFilter(query,offset,limit));
     }
 
     @Override
-    public List<Integer> getVolumes(){
-        return  transactionManager.doGetTransactionOperation(productDao::getVolumes);
-    }
-    @Override
-    public List<String> getColors(){
-        return  transactionManager.doGetTransactionOperation(productDao::getColors);
+    public List<Product> getAllProducts() {
+        return transactionManager.doGetTransactionOperation(productDao::getAllProducts);
     }
 
     @Override
-    public List<String> getBrands(){
+    public int getNumberOfRecords(FilterModel filterModel) {
+        String query = new QueryBuilder().build(filterModel,COUNT_OF_PRODUCTS);
+        return transactionManager.doGetTransactionOperation(() -> productDao.getProductCount(query));
+    }
+
+    @Override
+    public List<Integer> getVolumes() {
+        return transactionManager.doGetTransactionOperation(productDao::getVolumes);
+    }
+
+    @Override
+    public List<String> getColors() {
+        return transactionManager.doGetTransactionOperation(productDao::getColors);
+    }
+
+    @Override
+    public List<String> getBrands() {
         return transactionManager.doGetTransactionOperation(productDao::getBrands);
     }
 

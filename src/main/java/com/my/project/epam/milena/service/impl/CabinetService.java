@@ -18,11 +18,11 @@ public class CabinetService implements ICabinetService {
     }
 
     @Override
-    public List<UserOrder> getAllUserOrders(User user,int start,int recordsPerPage) {
-        return transactionManager.doGetTransactionOperation(() -> cabinetDao.getAllOrders(user,start,recordsPerPage));
+    public List<UserOrder> getAllUserOrders(User user,int offset,int limit) {
+        return transactionManager.doGetTransactionOperation(() -> cabinetDao.getAllOrders(user,offset,limit));
     }
     @Override
     public int getNumberOfRecords(User user){
-        return  transactionManager.doGetTransactionOperation(() ->cabinetDao.getNumberOfRecords(user));
+        return  transactionManager.doGetTransactionOperation(() ->cabinetDao.getOrdersCount(user));
     }
 }

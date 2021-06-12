@@ -7,6 +7,7 @@ public class FilterModel {
     private String sort;
     private String volume;
     private String color;
+    private String brand;
     private String minPrice;
     private String maxPrice;
 
@@ -37,6 +38,14 @@ public class FilterModel {
         this.color = color;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getMinPrice() {
         return minPrice;
     }
@@ -58,12 +67,12 @@ public class FilterModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FilterModel that = (FilterModel) o;
-        return Objects.equals(sort, that.sort) && Objects.equals(volume, that.volume) && Objects.equals(color, that.color) && Objects.equals(minPrice, that.minPrice) && Objects.equals(maxPrice, that.maxPrice);
+        return Objects.equals(sort, that.sort) && Objects.equals(volume, that.volume) && Objects.equals(color, that.color) && Objects.equals(brand, that.brand) && Objects.equals(minPrice, that.minPrice) && Objects.equals(maxPrice, that.maxPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sort, volume, color, minPrice, maxPrice);
+        return Objects.hash(sort, volume, color, brand, minPrice, maxPrice);
     }
 
     @Override
@@ -72,6 +81,7 @@ public class FilterModel {
                 "sort='" + sort + '\'' +
                 ", volume='" + volume + '\'' +
                 ", color='" + color + '\'' +
+                ", brand='" + brand + '\'' +
                 ", minPrice='" + minPrice + '\'' +
                 ", maxPrice='" + maxPrice + '\'' +
                 '}';

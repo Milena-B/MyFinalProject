@@ -16,9 +16,9 @@ public final class Constants {
         public static final String SAVE_MANUFACTURER = "INSERT INTO manufacturer (name) VALUES (?)";
         public static final String SAVE_ORDER = "INSERT INTO shop_order (status,address,number,account_id) VALUES (?,?,?,?)";
         public static final String GET_USER_BY_EMAIL = "SELECT * FROM account WHERE email = ?";
-        public static final String GET_PRODUCT_BY_ID = "SELECT * FROM product WHERE id = ?";
         public static final String GET_ALL_ORDERS = "SELECT * FROM shop_order";
         public static final String GET_ALL_USERS = "SELECT * FROM account";
+        public static final String GET_ALL_PRODUCTS  = "SELECT * FROM product";
         public static final String GET_VOLUME = "SELECT DISTINCT volume from product order by  volume asc";
         public static final String GET_COLOR = "SELECT DISTINCT color from product";
         public static final String GET_ALL_MANUFACTURERS = "SELECT * FROM manufacturer";
@@ -29,10 +29,9 @@ public final class Constants {
         public static final String UPDATE_STATUS_TO_REGISTERED = "UPDATE shop_order SET status = 'REGISTERED' WHERE id = ?";
         public static final String UPDATE_STATUS_TO_PAID = "UPDATE shop_order SET status = 'PAID' WHERE id = ?";
         public static final String UPDATE_STATUS_TO_CANCELED = "UPDATE shop_order SET status = 'CANCELED' WHERE id = ?";
-        public static final String GET_MANUFACTURER_NY_NAME = "select * from manufacturer where name = ?";
+        public static final String GET_MANUFACTURER_BY_NAME = "select * from manufacturer where name = ?";
         public static final String UPDATE_PRODUCT = "UPDATE product SET name=?,volume=?,color=?,price=?,manufacturer_id=?,create_date=? WHERE id = ";
         public static final String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
-        public static final String FOUND_ROWS = "SELECT FOUND_ROWS()";
         public static final String GET_ALL_USER_ORDERS = """
                 SELECT s.id, s.status, s.address, s.number,
                     sp.amount,sp.price,
@@ -42,6 +41,12 @@ public final class Constants {
                         ON s.id = sp.shop_order_id
                     LEFT JOIN product AS p
                         ON p.id = sp.product_id WHERE account_id =\s""";
+        public static final String GET_ORDERS_COUNT = " SELECT count(*) as id\n" +
+                "                FROM shop_order AS s\n" +
+                "                    LEFT JOIN shop_order_has_product AS sp\n" +
+                "                        ON s.id = sp.shop_order_id\n" +
+                "                    LEFT JOIN product AS p\n" +
+                "                        ON p.id = sp.product_id WHERE account_id = ";
 
         private SQLConstants() {
             throw new IllegalStateException();
@@ -95,7 +100,6 @@ public final class Constants {
         public static final String CAN_NOT_SAVE_ORDERED_PRODUCT_MESSAGE = "Cannot save ordered product";
         public static final String WRONG_ADDRESS_FORMAT_MESSAGE = "**Wrong address format";
         public static final String WRONG_CARD_NUMBER_FORMAT_MESSAGE = "**Wrong card number format";
-        public static final String CAN_NOT_GET_PRODUCT_BY_ID = "Cannot get product by id";
         public static final String CAN_NOT_GET_ALL_USERS = "Cannot get all users";
         public static final String CAN_NOT_SAVE_PRODUCT_MESSAGE = "Cannot save product";
         public static final String CANNOT_SAVE_MANUFACTURER_MESSAGE = "Cannot save product manufacturer";
@@ -182,6 +186,8 @@ public final class Constants {
         public static final String MANUFACTURER_ID = "manufacturerId";
         public static final String MANUFACTURER_NAME = "manufacturerName";
         public static final String AMOUNT = "amount";
+        public static final String LIST_WITH_PRODUCTS = "productList";
+        public static final String COUNT_OF_PRODUCTS = "productCount";
 
         private ProductConstants() {
             throw new IllegalStateException();

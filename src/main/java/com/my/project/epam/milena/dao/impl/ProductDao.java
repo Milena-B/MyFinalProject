@@ -20,12 +20,14 @@ import static com.my.project.epam.milena.util.Constants.SQLConstants.*;
 public class ProductDao implements IProductDao {
 
     @Override
-    public List<Product> getAll(String query) {
+    public List<Product> getAllProductsWithFilter(String query,int offset,int limit) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Product> products = new ArrayList<>();
         try {
-            preparedStatement = JDBCConnectionHolder.getConnection().prepareStatement(query);
+            preparedStatement = JDBCConnectionHolder.getConnection().prepareStatement(query + " limit ? offset ?");
+            preparedStatement.setInt(1,limit);
+            preparedStatement.setInt(2,offset);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 var product = new Product();
@@ -47,30 +49,22 @@ public class ProductDao implements IProductDao {
     }
 
     @Override
-    public Product getProductById(final Integer id) {
+    public int getProductCount(String query) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        var product = new Product();
+        var productCount = 0;
         try {
-            preparedStatement = JDBCConnectionHolder.getConnection().prepareStatement(GET_PRODUCT_BY_ID);
-            preparedStatement.setInt(1, id);
+            preparedStatement = JDBCConnectionHolder.getConnection().prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                product.setId(resultSet.getInt(ID));
-                product.setName(resultSet.getString(NAME));
-                product.setVolume(resultSet.getInt(VOLUME));
-                product.setColor(resultSet.getString(COLOR));
-                product.setPrice(resultSet.getBigDecimal(PRICE));
-                product.setProductManufacturer(new ProductManufacturerDao().getManufacturerById(resultSet.getInt(PRODUCT_MANUFACTURER_ID)));
-                product.setLocalDateTime(resultSet.getObject(CREATE_DATE, LocalDateTime.class));
-                return product;
+            while (resultSet.next()) {
+                productCount = resultSet.getInt("id");
             }
+            return productCount;
         } catch (SQLException exception) {
-            throw new DaoException(CAN_NOT_GET_PRODUCT_BY_ID);
+            throw new DaoException(CAN_NOT_GET_ALL_PRODUCTS);
         } finally {
             DBUtils.close(preparedStatement, resultSet);
         }
-        return null;
     }
 
     @Override
@@ -199,6 +193,32 @@ public class ProductDao implements IProductDao {
             return brands;
         } catch (SQLException e) {
             throw new DaoException(CAN_NOT_GET_BRAND);
+        } finally {
+            DBUtils.close(preparedStatement, resultSet);
+        }
+    }
+    @Override
+    public List<Product> getAllProducts() {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Product> products = new ArrayList<>();
+        try {
+            preparedStatement = JDBCConnectionHolder.getConnection().prepareStatement(GET_ALL_PRODUCTS);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                var product = new Product();
+                product.setId(resultSet.getInt(ID));
+                product.setName(resultSet.getString(NAME));
+                product.setVolume(resultSet.getInt(VOLUME));
+                product.setColor(resultSet.getString(COLOR));
+                product.setPrice(resultSet.getBigDecimal(PRICE));
+                product.setProductManufacturer(new ProductManufacturerDao().getManufacturerById(resultSet.getInt(PRODUCT_MANUFACTURER_ID)));
+                product.setLocalDateTime(resultSet.getObject(CREATE_DATE, LocalDateTime.class));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException exception) {
+            throw new DaoException(CAN_NOT_GET_ALL_PRODUCTS);
         } finally {
             DBUtils.close(preparedStatement, resultSet);
         }

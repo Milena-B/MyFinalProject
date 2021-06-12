@@ -4,12 +4,23 @@ import com.my.project.epam.milena.domain.FilterModel;
 
 import java.util.Objects;
 
+import static com.my.project.epam.milena.util.Constants.ProductConstants.COUNT_OF_PRODUCTS;
+import static com.my.project.epam.milena.util.Constants.ProductConstants.LIST_WITH_PRODUCTS;
+
 public class QueryBuilder {
 
-    private final StringBuilder defaultQuery = new StringBuilder("select * from product");
+    private final StringBuilder defaultQuery = new StringBuilder();
 
+    public static final String GET_PRODUCTS = "SELECT product.id, product.name , product.volume, product.color, product.price,product.create_date,product.manufacturer_id,manufacturer.name AS brand FROM (product INNER JOIN manufacturer ON manufacturer.id = product.manufacturer_id)";
+    public static final String GET_PRODUCTS_COUNT = "SELECT count(*) AS id FROM (product INNER JOIN manufacturer ON manufacturer.id = product.manufacturer_id)";
 
-    public String build(FilterModel filterModel) {
+    public String build(FilterModel filterModel, String query) {
+        if (query.equals(LIST_WITH_PRODUCTS)) {
+            defaultQuery.append(GET_PRODUCTS);
+        }
+        if (query.equals(COUNT_OF_PRODUCTS)) {
+            defaultQuery.append(GET_PRODUCTS_COUNT);
+        }
 
         if (Objects.isNull(filterModel)) {
             return defaultQuery.toString();
@@ -24,6 +35,12 @@ public class QueryBuilder {
                     .append("'")
                     .append(filterModel.getColor()).append("'");
         }
+        if (checkParamOnExisting(filterModel.getBrand())) {
+            defaultQuery
+                    .append(whereOrAnd()).append(" product.manufacturer_id = manufacturer.id and manufacturer.name = ")
+                    .append("'")
+                    .append(filterModel.getBrand()).append("'");
+        }
         if (checkParamOnExisting(filterModel.getMaxPrice())) {
             defaultQuery
                     .append(whereOrAnd()).append(" price < ").append(checkMaxPrice(filterModel.getMaxPrice()));
@@ -32,7 +49,7 @@ public class QueryBuilder {
             defaultQuery
                     .append(whereOrAnd()).append(" price > ").append(checkMinPrice(filterModel.getMinPrice()));
         }
-        if (checkParamOnExisting(filterModel.getSort())) {
+        if (query.equals("productList") && (checkParamOnExisting(filterModel.getSort()))) {
             defaultQuery.append(" order by ").append(filterModel.getSort());
         }
         return defaultQuery.toString();

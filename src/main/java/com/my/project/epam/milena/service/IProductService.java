@@ -6,9 +6,11 @@ import com.my.project.epam.milena.domain.Product;
 import java.util.List;
 
 public interface IProductService {
-    List<Product> getAllProducts(FilterModel filterModel);
+    List<Product> getAllProductsWithFilter(FilterModel filterModel,int start,int limit);
 
-    Product getProductById(final Integer id);
+    List<Product> getAllProducts();
+
+    int getNumberOfRecords(FilterModel filterModel);
 
     Product saveProduct(Product product);
 

@@ -33,7 +33,7 @@ public class ShowProductsCommand extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        List<Product> products = productService.getAllProducts(null);
+        List<Product> products = productService.getAllProducts();
         req.setAttribute(PRODUCTS_ATTRIBUTE, products);
         var dispatcher = req.getRequestDispatcher(SHOW_PRODUCTS);
         try {

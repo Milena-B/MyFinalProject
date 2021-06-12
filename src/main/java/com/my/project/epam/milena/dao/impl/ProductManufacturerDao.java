@@ -46,7 +46,7 @@ public class ProductManufacturerDao implements IProductManufacturerDao {
         try {
             var count = 0;
             var connection = JDBCConnectionHolder.getConnection();
-            preparedStatement = connection.prepareStatement(GET_MANUFACTURER_NY_NAME);
+            preparedStatement = connection.prepareStatement(GET_MANUFACTURER_BY_NAME);
             preparedStatement.setString(++count, name);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

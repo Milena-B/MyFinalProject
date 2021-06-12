@@ -38,24 +38,49 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute(PRODUCT_MANUFACTURER_NAME_LIST_ATTRIBUTE, productManufacturerService.getAllProductManufacturers());
-
         var filterModel = fillFilterModel(
                 request.getParameter("sort"),
                 request.getParameter("volume"),
                 request.getParameter("color"),
+                request.getParameter("brand"),
                 request.getParameter("minPrice"),
                 request.getParameter("maxPrice"));
+        var page = 1;
+        var limit = 8;
+        if (request.getParameter(PAGE) != null) {
+            try {
+                page = Integer.parseInt(request.getParameter(PAGE));
+            } catch (NumberFormatException e) {
+                LOGGER.error(WRONG_PROCESS, e);
+            }
+        }
 
-        List<Product> products = productService.getAllProducts(filterModel);
+        List<Product> products = productService.getAllProductsWithFilter(filterModel, (page - 1) * limit, limit);
+        int noOfRecords = productService.getNumberOfRecords(filterModel);
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / limit);
         List<Integer> volumes = productService.getVolumes();
         List<String> colors = productService.getColors();
+        List<String> brands = productService.getBrands();
 
         request.setAttribute(PRODUCTS_ATTRIBUTE, products);
         request.setAttribute(VOLUMES_ATTRIBUTE, volumes);
         request.setAttribute(COLORS_ATTRIBUTE, colors);
+        request.setAttribute(BRANDS_ATTRIBUTE, brands);
+
+        request.setAttribute(NUMBER_OF_PAGES, noOfPages);
+        request.setAttribute(CURRENT_PAGE, page);
+        request.setAttribute(NUMBER_OF_RECORDS, noOfRecords);
+
+        request.setAttribute("selectedVolume", request.getParameter("volume"));
+        request.setAttribute("selectedColor",request.getParameter("color"));
+        request.setAttribute("selectedBrand",request.getParameter("brand"));
+        request.setAttribute("selectedSort",request.getParameter("sort"));
+        request.setAttribute("selectedMinPrice",request.getParameter("minPrice"));
+        request.setAttribute("selectedMaxPrice",request.getParameter("maxPrice"));
 
         try {
             request.getRequestDispatcher(SHOP_PRODUCT_JSP).forward(request, response);
+
         } catch (ServletException | IOException e) {
             LOGGER.error(WRONG_PROCESS, e);
         }
@@ -63,12 +88,13 @@ public class ProductListController extends HttpServlet {
 
 
     private FilterModel fillFilterModel(String sort, String volume,
-                                        String color, String minPrice, String maxPrice) {
+                                        String color, String brand, String minPrice, String maxPrice) {
 
         var filterModel = new FilterModel();
         filterModel.setSort(sort);
         filterModel.setVolume(volume);
         filterModel.setColor(color);
+        filterModel.setBrand(brand);
         filterModel.setMinPrice(minPrice);
         filterModel.setMaxPrice(maxPrice);
 

@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface IProductDao {
 
-    List<Product> getAll(String query);
+    List<Product> getAllProductsWithFilter(String query,int offset,int limit);
 
-    Product getProductById(Integer id);
+    int getProductCount(String query);
+
+    List<Product> getAllProducts();
 
     Product save(Product product);
 

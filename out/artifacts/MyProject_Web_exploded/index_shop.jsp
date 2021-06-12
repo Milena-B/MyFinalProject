@@ -67,7 +67,7 @@
                             </form>
                         </ul>
                     </li>
-                    <li><a href="${pageContext.request.contextPath}/productList"><fmt:message key="navbar.shop"/></a></li>
+                    <li><a href="${pageContext.request.contextPath}/productList?"><fmt:message key="navbar.shop"/></a></li>
                     <li><a href="cart.jsp"><fmt:message key="navbar.cart"/></a></li>
                     <c:if test="${sessionScope.authUser != null}">
                     <c:if test="${sessionScope.authUser.role != 'ADMIN'}">
