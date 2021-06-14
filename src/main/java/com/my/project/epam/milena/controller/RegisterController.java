@@ -25,6 +25,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.*;
 import static com.my.project.epam.milena.util.Constants.UserConstants.*;
 
+/**
+ * Registration controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/RegisterController")
 public class RegisterController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(RegisterController.class);

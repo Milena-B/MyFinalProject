@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.CAN_NOT_SAVE_ORDERED_PRODUCT_MESSAGE;
-import static com.my.project.epam.milena.util.Constants.SQLConstants.SAVE_ORDERED_PRODUCT;
+import static com.my.project.epam.milena.util.Constants.SQLConstants.*;
 
 public class OrderedProductDao implements IOrderedProductDao {
 
@@ -34,4 +34,3 @@ public class OrderedProductDao implements IOrderedProductDao {
         return null;
     }
 }
-

@@ -3,6 +3,10 @@ package com.my.project.epam.milena.encrypt;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Used to encrypt passwords
+ *
+ */
 public class Encoder {
     private Encoder() {
     }

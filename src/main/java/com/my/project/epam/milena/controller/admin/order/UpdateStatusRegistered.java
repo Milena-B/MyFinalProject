@@ -17,6 +17,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.ADMIN;
 import static com.my.project.epam.milena.util.Constants.UserConstants.ID;
 
+/**
+ * Controller required to update the order status by the admin
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/registered")
 public class UpdateStatusRegistered extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(UpdateStatusRegistered.class);

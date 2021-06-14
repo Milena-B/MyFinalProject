@@ -5,6 +5,9 @@ import java.io.IOException;
 
 import static com.my.project.epam.milena.util.Constants.OtherConstants.ENCODING;
 
+/**
+ * Describes a filter that set the correct encoding
+ */
 public class EncodingFilter implements Filter {
     private String encoding;
 

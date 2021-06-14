@@ -15,6 +15,12 @@ import java.io.Serial;
 import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 
+/**
+ * Controller for adding to cart
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/addToCart")
 public class AddToCartController extends CartController {
     private static final Logger LOGGER = Logger.getLogger(AddToCartController.class);

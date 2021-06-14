@@ -17,6 +17,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.ADMIN;
 import static com.my.project.epam.milena.util.Constants.UserConstants.EMAIL;
 
+/**
+ * Controller required to unblock user by the admin
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/UnbanUser")
 public class UnbanCommand extends HttpServlet {
     public static final Logger LOGGER = Logger.getLogger(UnbanCommand.class);

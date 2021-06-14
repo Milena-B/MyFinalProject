@@ -16,6 +16,13 @@ public class LoginValidator {
         this.errors = errors;
     }
 
+    /**
+     * Used to authorization validation
+     *
+     * @param user used to get all user login data
+     * @return Map witch contains key and error message
+     */
+
     public Map<String, String> validate(User user) {
         if (!VALID_EMAIL_ADDRESS_REGEX.matcher(user.getEmail()).find()) {
             errors.put(LOGIN_CONFIRMATION, INCORRECT_PASSWORD_OR_EMAIL_MESSAGE);

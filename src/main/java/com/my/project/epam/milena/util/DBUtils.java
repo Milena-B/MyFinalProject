@@ -3,6 +3,11 @@ package com.my.project.epam.milena.util;
 import java.util.logging.Logger;
 
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.CAN_NOT_CLOSE_RESOURCE_MESSAGE;
+/**
+ * Util database methods
+ *
+ * @author Milena Bocharova
+ */
 
 public final class DBUtils {
 
@@ -12,6 +17,10 @@ public final class DBUtils {
         throw new IllegalStateException();
     }
 
+    /**
+     * Represents a storage object for some resource until it is closed
+     * @param resources is resources that should be closed
+     */
     public static void close(AutoCloseable... resources) {
         for (AutoCloseable resource : resources) {
             if (resource != null) {

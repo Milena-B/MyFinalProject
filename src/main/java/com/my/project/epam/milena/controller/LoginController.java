@@ -22,7 +22,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.*;
 import static com.my.project.epam.milena.util.Constants.UserConstants.*;
-
+/**
+ * Authorization controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(LoginController.class);

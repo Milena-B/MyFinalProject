@@ -37,7 +37,7 @@
              data-background="assets/images/section-4.jpg">
         <div class="titan-caption">
             <div class="caption-content">
-                <div class="font-alt mb-30 titan-title-size-4"><fmt:message key="error"/></div>
+                <div class="font-alt mb-30 titan-title-size-4"><fmt:message key="403.error"/></div>
                 <div class="font-alt"><fmt:message key="error.blocked"/><br/>
                 </div>
                 <div class="font-alt mt-30"><a class="btn btn-border-w btn-round" href="index_shop.jsp"><fmt:message key="button.toHome"/></a></div>

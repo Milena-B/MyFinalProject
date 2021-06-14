@@ -20,6 +20,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.ORDERS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.SHOW_ORDERS;
 
+/**
+ * Controller for showing all orders in shop
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/orders")
 public class ShowOrdersCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ShowOrdersCommand.class);

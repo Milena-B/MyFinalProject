@@ -17,10 +17,15 @@ import java.util.Objects;
 
 import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
-import static com.my.project.epam.milena.util.Constants.PathConstants.CABINET_CONTROLLER;
 import static com.my.project.epam.milena.util.Constants.PathConstants.MY_CABINET_JSP;
 
-@WebServlet(CABINET_CONTROLLER)
+/**
+ * Cabinet controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
+@WebServlet("/cabinet")
 public class CabinetController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(CabinetController.class);
 

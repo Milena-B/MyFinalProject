@@ -14,6 +14,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.AUTH_
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.LOGIN_REGISTER_JSP;
 
+/**
+ * Logout controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/Logout")
 public class LogoutController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(LogoutController.class);

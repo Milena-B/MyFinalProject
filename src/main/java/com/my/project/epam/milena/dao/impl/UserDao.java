@@ -142,4 +142,33 @@ public class UserDao implements IUserDao {
             DBUtils.close(preparedStatement);
         }
     }
+    @Override
+    public User getUserById(int id) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            var count = 0;
+            var connection = JDBCConnectionHolder.getConnection();
+            preparedStatement = connection.prepareStatement(GET_USER_BY_ID);
+            preparedStatement.setInt(++count, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                var user = new User();
+                user.setId(resultSet.getInt(ID));
+                user.setFirstName(resultSet.getString(FIRST_NAME));
+                user.setLastName(resultSet.getString(LAST_NAME));
+                user.setEmail(resultSet.getString(EMAIL));
+                user.setPassword(resultSet.getString(PASSWORD));
+                user.setRole(User.Role.valueOf(resultSet.getString((ROLE))));
+                user.setStatus(User.Status.valueOf(resultSet.getString(STATUS)));
+                return user;
+            }
+        } catch (SQLException exception) {
+            throw new DaoException(CAN_NOT_GET_USER_MESSAGE);
+        } finally {
+            DBUtils.close(preparedStatement, resultSet);
+        }
+        return null;
+    }
+
 }

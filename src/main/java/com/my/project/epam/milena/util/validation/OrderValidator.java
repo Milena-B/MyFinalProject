@@ -18,6 +18,13 @@ public class OrderValidator {
         this.errors = new HashMap<>();
     }
 
+    /**
+     * Used to order validation
+     *
+     * @param order used to get all date about order
+     * @return Map witch contains key and error message
+     */
+
     public Map<String, String> validate(Order order) {
         if (order.getAddress().isEmpty() || order.getAddress().length() < 10) {
             errors.put(ORDER_ADDRESS, WRONG_ADDRESS_FORMAT_MESSAGE);

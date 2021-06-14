@@ -18,6 +18,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.SHOW_PRODUCTS;
 
+/**
+ * Controller for showing all products in shop
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/products")
 public class ShowProductsCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ShowProductsCommand.class);

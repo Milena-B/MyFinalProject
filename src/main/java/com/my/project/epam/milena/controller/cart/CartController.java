@@ -11,6 +11,12 @@ import java.math.BigDecimal;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.ProductConstants.*;
 
+/**
+ * Cart controller
+ *
+ * @author Bocharova Milena
+ *
+ */
 public class CartController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(CartController.class);
 

@@ -17,6 +17,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.ADMIN;
 import static com.my.project.epam.milena.util.Constants.UserConstants.ID;
 
+/**
+ * Controller for deleting products by admin
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/deleteProduct")
 public class DeleteCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(DeleteCommand.class);

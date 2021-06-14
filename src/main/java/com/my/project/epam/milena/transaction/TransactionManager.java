@@ -15,6 +15,12 @@ import java.util.logging.Logger;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.CAN_NOT_ROLLBACK_MESSAGE;
 import static java.sql.Connection.TRANSACTION_READ_COMMITTED;
 
+/**
+ * Represents centralized transaction processor.
+ *
+ * @author Milena Bocharova
+ */
+
 public class TransactionManager {
 
     private static final Logger LOGGER = Logger.getLogger(TransactionManager.class.getName());

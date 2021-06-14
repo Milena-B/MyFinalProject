@@ -18,6 +18,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.SHOW_USERS;
 
+/**
+ * Controller required to show all users in the store
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/users")
 public class ShowUsersCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ShowUsersCommand.class);

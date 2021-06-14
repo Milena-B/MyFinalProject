@@ -7,6 +7,12 @@ import java.util.Objects;
 import static com.my.project.epam.milena.util.Constants.ProductConstants.COUNT_OF_PRODUCTS;
 import static com.my.project.epam.milena.util.Constants.ProductConstants.LIST_WITH_PRODUCTS;
 
+/**
+ * Represents a builder of query
+ *
+ * @author Milena Bocharova
+ */
+
 public class QueryBuilder {
 
     private final StringBuilder defaultQuery = new StringBuilder();
@@ -14,6 +20,13 @@ public class QueryBuilder {
     public static final String GET_PRODUCTS = "SELECT product.id, product.name , product.volume, product.color, product.price,product.create_date,product.manufacturer_id,manufacturer.name AS brand FROM (product INNER JOIN manufacturer ON manufacturer.id = product.manufacturer_id)";
     public static final String GET_PRODUCTS_COUNT = "SELECT count(*) AS id FROM (product INNER JOIN manufacturer ON manufacturer.id = product.manufacturer_id)";
 
+    /**
+     * Used to build a database query
+     *
+     * @param filterModel is an entity that contains all the sort options on the page
+     * @param query means what specific query we will build
+     * @return query
+     */
     public String build(FilterModel filterModel, String query) {
         if (query.equals(LIST_WITH_PRODUCTS)) {
             defaultQuery.append(GET_PRODUCTS);

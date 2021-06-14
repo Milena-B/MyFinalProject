@@ -22,6 +22,13 @@ import static com.my.project.epam.milena.util.Constants.PathConstants.ADMIN;
 import static com.my.project.epam.milena.util.Constants.ProductConstants.*;
 import static com.my.project.epam.milena.util.Constants.UserConstants.ID;
 
+
+/**
+ * Controller for updating products by admin
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/updateProduct")
 public class UpdateCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(UpdateCommand.class);

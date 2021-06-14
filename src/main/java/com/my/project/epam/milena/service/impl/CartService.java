@@ -1,5 +1,6 @@
 package com.my.project.epam.milena.service.impl;
 
+
 import com.my.project.epam.milena.domain.Product;
 
 import java.io.Serial;
@@ -19,11 +20,22 @@ public class CartService implements Serializable {
         cart = new HashMap<>();
     }
 
+    /**
+     * Used to add product to cart
+     *
+     * @param product product
+     */
+
     public void add(Product product) {
         int currentCount = cart.getOrDefault(product, 0);
         cart.put(product, currentCount + 1);
     }
 
+    /**
+     * Used to get total sum of products
+     *
+     * @return bigDecimal totalSum
+     */
     public BigDecimal getTotalSum() {
         BigDecimal totalSum = BigDecimal.ZERO;
         for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
@@ -35,14 +47,27 @@ public class CartService implements Serializable {
         return totalSum;
     }
 
+    /**
+     * Used to get cart
+     *
+     * @return cart
+     */
     public Map<Product, Integer> getCart() {
         return cart;
     }
 
+    /**
+     * Used to clear cart
+     */
     public void clear() {
         cart.clear();
     }
 
+    /**
+     * Used to remove product from cart
+     *
+     * @param product product
+     */
     public void delete(Product product) {
         cart.remove(product);
     }

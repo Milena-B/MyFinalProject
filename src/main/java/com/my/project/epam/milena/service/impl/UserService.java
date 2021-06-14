@@ -1,7 +1,6 @@
 package com.my.project.epam.milena.service.impl;
 
 import com.my.project.epam.milena.dao.IUserDao;
-import com.my.project.epam.milena.domain.Order;
 import com.my.project.epam.milena.domain.User;
 import com.my.project.epam.milena.encrypt.Encoder;
 import com.my.project.epam.milena.exceptions.UserException;
@@ -41,11 +40,6 @@ public class UserService implements IUserService {
         return transactionManager.doGetTransactionOperation(userDao::getAllUsers);
     }
 
-    @Override
-    public User getUserByEmail(String email) {
-        return transactionManager.doGetTransactionOperation(() -> userDao.getUserByEmail(email));
-
-    }
 
     @Override
     public void updateStatusToBlocked(String email) {
@@ -75,5 +69,9 @@ public class UserService implements IUserService {
             }
             return user;
         });
+    }
+    @Override
+    public User getUserByEmail(String email){
+       return transactionManager.doGetTransactionOperation(() -> userDao.getUserByEmail(email));
     }
 }

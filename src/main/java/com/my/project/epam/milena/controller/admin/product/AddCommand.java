@@ -21,6 +21,12 @@ import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PRO
 import static com.my.project.epam.milena.util.Constants.PathConstants.ADMIN;
 import static com.my.project.epam.milena.util.Constants.ProductConstants.*;
 
+/**
+ * Controller for adding products by admin
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/addProduct")
 public class AddCommand extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AddCommand.class);

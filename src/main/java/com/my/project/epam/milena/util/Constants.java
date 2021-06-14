@@ -2,6 +2,12 @@ package com.my.project.epam.milena.util;
 
 import java.util.regex.Pattern;
 
+/**
+ * Centralized storage of constants
+ *
+ * @author Milena Bocharova
+ */
+
 public final class Constants {
 
     private Constants() {
@@ -16,6 +22,7 @@ public final class Constants {
         public static final String SAVE_MANUFACTURER = "INSERT INTO manufacturer (name) VALUES (?)";
         public static final String SAVE_ORDER = "INSERT INTO shop_order (status,address,number,account_id) VALUES (?,?,?,?)";
         public static final String GET_USER_BY_EMAIL = "SELECT * FROM account WHERE email = ?";
+        public static final String GET_USER_BY_ID = "SELECT * FROM account WHERE id = ?";
         public static final String GET_ALL_ORDERS = "SELECT * FROM shop_order";
         public static final String GET_ALL_USERS = "SELECT * FROM account";
         public static final String GET_ALL_PRODUCTS  = "SELECT * FROM product";
@@ -155,7 +162,6 @@ public final class Constants {
         public static final String REGISTER_CONTROLLER = "RegisterController";
         public static final String LOGIN_CONTROLLER = "LoginController";
         public static final String ORDER_CONTROLLER = "orderController";
-        public static final String CABINET_CONTROLLER = "/cabinet";
         public static final String LOGIN_REGISTER_JSP = "login_register.jsp";
         public static final String SHOP_PRODUCT_JSP = "shop.jsp";
         public static final String HOME = "index_shop.jsp";

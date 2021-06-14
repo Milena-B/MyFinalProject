@@ -31,6 +31,12 @@ import static com.my.project.epam.milena.util.Constants.OrderConstants.ORDER_CAR
 import static com.my.project.epam.milena.util.Constants.PathConstants.*;
 import static com.my.project.epam.milena.util.Constants.UserConstants.ERRORS;
 
+/**
+ * Order controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/orderController")
 public class OrderController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(OrderController.class);

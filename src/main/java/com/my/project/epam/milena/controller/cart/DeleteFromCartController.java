@@ -15,6 +15,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.WRONG_PROCESS;
 import static com.my.project.epam.milena.util.Constants.PathConstants.CART_JSP;
 
+/**
+ * Controller for deleting from cart
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/deleteFromCart")
 public class DeleteFromCartController extends CartController {
     private static final Logger LOGGER = Logger.getLogger(DeleteFromCartController.class);

@@ -1,6 +1,7 @@
 package com.my.project.epam.milena.filter;
 
 import com.my.project.epam.milena.domain.User;
+import com.my.project.epam.milena.service.impl.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -11,17 +12,24 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.my.project.epam.milena.util.Constants.AttributeConstants.AUTH_USER_ATTRIBUTE;
+import static com.my.project.epam.milena.util.Constants.AttributeConstants.USER_SERVICE_ATTRIBUTE;
 
+/**
+ * Describes a filter that separates access to pages by role
+ */
 public class SecurityFilter implements Filter {
 
+    UserService userService;
     List<String> userUrls = new ArrayList<>();
     List<String> adminUrls = new ArrayList<>();
 
-
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
+        userService = (UserService) fConfig.getServletContext().getAttribute(USER_SERVICE_ATTRIBUTE);
         userUrls.add("/cabinet.jsp");
         userUrls.add("/checkout.jsp");
+        userUrls.add("/showCabinet.jsp");
+        userUrls.add("/successPage.jsp");
         adminUrls.add("/admin.jsp");
         adminUrls.add("/users");
         adminUrls.add("/UnbanUser");
@@ -31,6 +39,10 @@ public class SecurityFilter implements Filter {
         adminUrls.add("/addProduct");
         adminUrls.add("/deleteProduct.jsp");
         adminUrls.add("/deleteProduct");
+        adminUrls.add("/showOrders.jsp");
+        adminUrls.add("/showProducts.jsp");
+        adminUrls.add("/showUsers.jsp");
+
     }
 
     @Override
@@ -56,12 +68,13 @@ public class SecurityFilter implements Filter {
                     response.sendRedirect("login_register.jsp");
                     return false;
                 }
-                if (user.getRole() != User.Role.USER) {
+                String email = user.getEmail();
+                var currentUser = userService.getUserByEmail(email);
+                if (currentUser.getRole() != User.Role.USER) {
                     response.sendRedirect("403.jsp");
                     return false;
-
                 }
-                if (user.getStatus() == User.Status.BLOCKED) {
+                if (currentUser.getStatus() == User.Status.BLOCKED) {
                     response.sendRedirect("error.jsp");
                     return false;
                 }

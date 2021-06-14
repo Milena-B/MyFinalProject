@@ -20,6 +20,12 @@ import static com.my.project.epam.milena.util.Constants.AttributeConstants.*;
 import static com.my.project.epam.milena.util.Constants.ErrorConstants.*;
 import static com.my.project.epam.milena.util.Constants.PathConstants.SHOP_PRODUCT_JSP;
 
+/**
+ * List of products controller.
+ *
+ * @author Bocharova Milena
+ *
+ */
 @WebServlet("/productList")
 public class ProductListController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ProductListController.class);
