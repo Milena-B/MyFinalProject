@@ -78,7 +78,7 @@
                         <form class="form" action="${pageContext.request.contextPath}/LoginController" method="post">
                             <div style="color: #D53E36;">${errors.login_confirmation}</div>
                             <div class="form-group" >
-                                <input class="form-control" id="email"  type="text" name="email" placeholder="<fmt:message key="email"/>"/>
+                                <input class="form-control" value="${requestScope.userEmail}" id="E-mail"  type="text" name="email" placeholder="<fmt:message key="email"/>"/>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="password" type="password" name="password" placeholder="<fmt:message key="password"/>"/>
@@ -92,20 +92,20 @@
                         <h4 class="font-alt"><fmt:message key="register"/></h4>
                         <hr class="divider-w mb-10">
                         <form class="form" action="${pageContext.request.contextPath}/RegisterController" method="post">
-                            <div style="color: #D53E36;">${errors.email}</div>
-                            <div style="color: #D53E36;">${errors.email_confirmation}</div>
+                            <div style="color: #D53E36;">${requestScope.errors.email}</div>
+                            <div style="color: #D53E36;">${requestScope.errors.email_confirmation}</div>
                             <div class="form-group">
-                                <input class="form-control" value="${email}" id="E-mail" type="text" name="email" placeholder="<fmt:message key="email"/>"/>
+                                <input class="form-control" value="${requestScope.email}" id="E-mail" type="text" name="email" placeholder="<fmt:message key="email"/>"/>
                             </div>
-                            <div style="color: #D53E36;">${errors.firstName}</div>
+                            <div style="color: #D53E36;">${requestScope.errors.firstName}</div>
                             <div class="form-group">
-                                <input class="form-control" value="${firstName}" id="firstName" type="text" name="firstName" placeholder="<fmt:message key="fistName"/>"/>
+                                <input class="form-control" value="${requestScope.firstName}" id="firstName" type="text" name="firstName" placeholder="<fmt:message key="fistName"/>"/>
                             </div>
-                            <div style="color: #D53E36;">${errors.lastName}</div>
+                            <div style="color: #D53E36;">${requestScope.errors.lastName}</div>
                             <div class="form-group">
-                                <input class="form-control" value="${lastName}" id="lastName" type="text" name="lastName" placeholder="<fmt:message key="lastName"/>"/>
+                                <input class="form-control" value="${requestScope.lastName}" id="lastName" type="text" name="lastName" placeholder="<fmt:message key="lastName"/>"/>
                             </div>
-                            <div style="color: #D53E36;">${errors.password}</div>
+                            <div style="color: #D53E36;">${requestScope.errors.password}</div>
                             <div class="form-group">
                                 <input class="form-control" id="password" type="password" name="password" placeholder="<fmt:message key="password"/>"/>
                             </div>

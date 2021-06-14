@@ -25,7 +25,6 @@ import static com.my.project.epam.milena.util.Constants.SQLConstants.OBJECT_NAME
  */
 @WebListener
 public class ContextListener implements ServletContextListener {
-    private static final Logger LOGGER = Logger.getLogger(ContextListener.class);
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
@@ -60,7 +59,7 @@ public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        LOGGER.debug("Servlet context destruction finished");
+
     }
 
     /**
