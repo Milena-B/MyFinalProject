@@ -27,14 +27,17 @@ public class OrderService implements IOrderService {
 
     @Override
     public void makeOrder(int userId, String address, String cardNumber, List<OrderedProduct> orderedProducts) {
-        transactionManager.doModifiableTransactionOperation(() -> {
-            var currentUser = userDao.getUserById(userId);
-            if (!currentUser.getStatus().equals(User.Status.BLOCKED)) {
-                Integer orderId = orderDao.save(new Order(Order.Status.REGISTERED, address, cardNumber, userId));
-                orderedProducts.forEach(orderedProduct -> {
-                    orderedProduct.setOrderId(orderId);
+        transactionManager.doModifiableTransactionOperation(new Runnable() {
+            @Override
+            public void run() {
+                var currentUser = userDao.getUserById(userId);
+                if (!currentUser.getStatus().equals(User.Status.BLOCKED)) {
+                    Integer orderId = orderDao.save(new Order(Order.Status.REGISTERED, address, cardNumber, userId));
+                    orderedProducts.forEach(orderedProduct -> {
+                        orderedProduct.setOrderId(orderId);
                         orderedProductDao.save(orderedProduct);
-                });
+                    });
+                }
             }
         });
     }

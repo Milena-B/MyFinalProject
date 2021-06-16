@@ -96,6 +96,9 @@
     <h2 align="center">
         <a href="cabinet?page=1" ><fmt:message key="show.orders"/></a>
     </h2>
+    <h2 align="center">
+        <a href="wishList"><fmt:message key="wishList"/></a>
+    </h2>
     </body>
     </div>
 </main>

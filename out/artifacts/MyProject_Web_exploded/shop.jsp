@@ -182,6 +182,13 @@
                 <div class="row multi-columns-row">
                     <c:forEach items="${requestScope.products}" var="product">
                         <div class="col-sm-6 col-md-3 col-lg-3">
+                            <c:if test="${sessionScope.authUser != null }">
+                                <form action="${pageContext.request.contextPath}/addToFavorite"
+                                      class="favme dashicons dashicons-heart" method="post">
+                                    <input type="hidden" name="id" value="${product.id}">
+                                    <input type="submit" value="<fmt:message key="button.add.wishList"/>">
+                                </form>
+                            </c:if>
                             <div class="shop-item">
                                 <form action="${pageContext.request.contextPath}/addToCart" method="GET">
                                     <div class="shop-item-image"><img src="assets/images/shop/product-12.jpg"

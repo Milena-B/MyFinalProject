@@ -30,6 +30,7 @@ public class SecurityFilter implements Filter {
         userUrls.add("/checkout.jsp");
         userUrls.add("/showCabinet.jsp");
         userUrls.add("/successPage.jsp");
+        userUrls.add("/wishList.jsp");
         adminUrls.add("/admin.jsp");
         adminUrls.add("/users");
         adminUrls.add("/UnbanUser");

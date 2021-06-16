@@ -1,11 +1,11 @@
 package com.my.project.epam.milena.listener;
 
 import com.my.project.epam.milena.dao.*;
+import com.my.project.epam.milena.dao.IWishListDao;
 import com.my.project.epam.milena.dao.impl.*;
 import com.my.project.epam.milena.service.*;
 import com.my.project.epam.milena.service.impl.*;
 import com.my.project.epam.milena.transaction.TransactionManager;
-import org.apache.log4j.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,6 +35,14 @@ public class ContextListener implements ServletContextListener {
         IUserDao userDao = new UserDao();
         IUserService userService = new UserService(userDao, transactionManager);
         context.setAttribute(USER_SERVICE_ATTRIBUTE, userService);
+
+        IFavoriteDao favoriteDao = new FavoriteDao();
+        IFavoriteService favoriteService = new FavoriteService(favoriteDao,transactionManager);
+        context.setAttribute(FAVORITE_SERVICE_ATTRIBUTE, favoriteService);
+
+        IWishListDao wishListDao = new WishListDao();
+        IWishListService wishListService = new WishListService(wishListDao,transactionManager);
+        context.setAttribute(WISH_LIST_SERVICE,wishListService);
 
         ICabinetDao cabinetDao = new CabinetDao();
         ICabinetService cabinetService = new CabinetService(cabinetDao, transactionManager);

@@ -139,6 +139,9 @@ public final class Constants {
         public static final String BRANDS_ATTRIBUTE = "brands";
         public static final String PRODUCT_MANUFACTURER_SERVICE_ATTRIBUTE = "productManufacturerService";
         public static final String PRODUCT_SERVICE_ATTRIBUTE = "productService";
+        public static final String FAVORITE_SERVICE_ATTRIBUTE = "favoriteService";
+        public static final String WISH_LIST_SERVICE = "wishListService";
+        public static final String WISH_LIST = "wishList";
         public static final String PRODUCT_MANUFACTURER_NAME_LIST_ATTRIBUTE = "productManufacturerList";
         public static final String ORDER_SERVICE_ATTRIBUTE = "orderService";
         public static final String CART_SERVICE_ATTRIBUTE = "cartService";
@@ -174,6 +177,7 @@ public final class Constants {
         public static final String CHECKOUT = "checkout.jsp";
         public static final String ORDERS = "orders";
         public static final String CART_JSP = "cart.jsp";
+        public static final String WISH_LIST_JSP = "wishList.jsp";
 
 
         private PathConstants() {
